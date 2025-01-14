@@ -1,19 +1,19 @@
 #include "philo.h"
 
-static int	ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
 		|| c == ' ');
 }
 
-static int	ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ((c >= '0' && c <= '9') || c == '+' || c == '-')
 		return (1);
 	return (0);
 }
 
-static int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	nb;
 	int	sign;
@@ -36,7 +36,7 @@ static int	ft_atoi(const char *str)
 	return (sign * nb);
 }
 
-static bool	valid_input(int argc, char *argv[])
+bool	valid_input(int argc, char *argv[])
 {
 	int	i;
 	int	j;
@@ -60,7 +60,11 @@ static bool	valid_input(int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
+	t_data	data;
+
 	if (argc < 5 || argc > 6 || !valid_input(argc, argv))
 		return (write(2, "Error: Invalid arguments.\n", 26), 1);
+	if (!init(&data, argc, argv))
+		return (write(2, "Error: Initialization failed.\n", 30), 1);
 	return (0);
 }
