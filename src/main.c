@@ -13,10 +13,10 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	nb;
-	int	sign;
+	long int	nb;
+	int			sign;
 
 	nb = 0;
 	sign = 1;
@@ -47,13 +47,13 @@ bool	valid_input(int argc, char *argv[])
 		j = -1;
 		while (argv[i][++j])
 		{
-			if (!ft_isdigit(argv[i][j]) || ft_atoi(argv[i]) < 1
-				|| ft_atoi(argv[i]) > INT_MAX)
+			if (!ft_isdigit(argv[i][j]) || ft_atol(argv[i]) < 1
+				|| ft_atol(argv[i]) > INT_MAX)
 				return (false);
 		}
 	}
-	if (ft_atoi(argv[1]) > 200 || ft_atoi(argv[2]) <= 60
-		|| ft_atoi(argv[3]) <= 60 || ft_atoi(argv[4]) <= 60)
+	if (ft_atol(argv[1]) > 200 || ft_atol(argv[2]) <= 60
+		|| ft_atol(argv[3]) <= 60 || ft_atol(argv[4]) <= 60)
 		return (false);
 	return (true);
 }
@@ -66,5 +66,8 @@ int	main(int argc, char *argv[])
 		return (write(2, "Error: Invalid arguments.\n", 26), 1);
 	if (!init(&data, argc, argv))
 		return (write(2, "Error: Initialization failed.\n", 30), 1);
+	if (!threads(&data))
+		return (write(2, "Error: Simulation failed.\n", 26), 1);
+	free(data.philos);
 	return (0);
 }

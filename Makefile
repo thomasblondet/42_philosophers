@@ -1,7 +1,13 @@
 NAME = philo
 HEADER = -I./include
 CFLAGS = -Wall -Wextra -Werror
-SRC = src/main.c src/init.c
+SRC = src/main.c \
+	src/init.c \
+	src/threads.c \
+	src/actions.c\
+	src/print_functions.c \
+	src/safe_functions.c \
+	src/time_functions.c
 
 OBJ = $(SRC:src/%.c=obj/%.o)
 

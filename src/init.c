@@ -57,19 +57,21 @@ void	link_forks(t_data *data)
 
 void	input_init(t_data *data, int argc, char *argv[])
 {
-	data->nbr_of_philos = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+	data->nbr_of_philos = ft_atol(argv[1]);
+	data->time_to_die = ft_atol(argv[2]);
+	data->time_to_eat = ft_atol(argv[3]);
+	data->time_to_sleep = ft_atol(argv[4]);
+	data->start_time = get_time();
 	if (argc == 6)
 	{
-		data->max_nbr_of_meals = ft_atoi(argv[5]);
+		data->max_nbr_of_meals = ft_atol(argv[5]);
 		data->five_args = true;
 	}
 }
 
 int	init(t_data *data, int argc, char *argv[])
 {
+	memset(data, 0, sizeof(t_data));
 	input_init(data, argc, argv);
 	data->philos = malloc(data->nbr_of_philos * sizeof(t_philo));
 	if (!data->philos)
