@@ -6,8 +6,8 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/time.h>
 # include <string.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 typedef struct s_philo	t_philo;
@@ -66,6 +66,9 @@ int						check_time(t_philo *philo);
 void					actualize_meal_time(t_philo *philo);
 long					get_time(void);
 void					ft_usleep(long time_in_ms);
+/* destroy */
+void					destroy_forks(t_data *data);
+void					destroy_mutex(t_data *data);
 /* utils */
 long					ft_atol(const char *str);
 

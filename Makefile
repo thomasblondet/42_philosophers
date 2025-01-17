@@ -1,13 +1,14 @@
 NAME = philo
 HEADER = -I./include
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 SRC = src/main.c \
 	src/init.c \
 	src/threads.c \
 	src/actions.c\
 	src/print_functions.c \
 	src/safe_functions.c \
-	src/time_functions.c
+	src/time_functions.c \
+	src/destroy.c
 
 OBJ = $(SRC:src/%.c=obj/%.o)
 

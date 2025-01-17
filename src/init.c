@@ -15,6 +15,7 @@ int	init_forks(t_data *data)
 			return (0);
 		}
 		data->philos[i].id = i + 1;
+		data->philos[i].meal_count = 0;
 		i++;
 	}
 	return (1);
@@ -77,7 +78,9 @@ int	init(t_data *data, int argc, char *argv[])
 	if (!data->philos)
 		return (0);
 	link_forks(data);
-	if (!init_forks(data) || !init_mutexes(data))
+	if (!init_forks(data))
 		return (free(data->philos), 0);
+	if (!init_mutexes(data))
+		return (free(data->philos), destroy_forks(data), 0);
 	return (1);
 }

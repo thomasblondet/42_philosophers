@@ -67,7 +67,10 @@ int	main(int argc, char *argv[])
 	if (!init(&data, argc, argv))
 		return (write(2, "Error: Initialization failed.\n", 30), 1);
 	if (!threads(&data))
-		return (write(2, "Error: Simulation failed.\n", 26), 1);
+		return (write(2, "Error: Simulation failed.\n", 26),
+			destroy_forks(&data), destroy_mutex(&data), free(data.philos), 1);
+	destroy_forks(&data);
+	destroy_mutex(&data);
 	free(data.philos);
 	return (0);
 }
